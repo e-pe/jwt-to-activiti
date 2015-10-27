@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process-config>
+	<process-monitoring-output 
+		fetchFromResource="true"
+		fetchResourceUrl="">
+		
+		<output-data>
+			<add key="" value="" />
+			<add key="" value="" />
+			<add key="" value="" />
+		</output-data>	
+			
+	</process-monitoring-output>
+</process-config>

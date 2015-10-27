@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process-config>
+	<process-monitoring-event-types>
+	
+		<!-- Example - Begin -->
+		
+		<process-monitoring-event-type 
+			name="LoanRequestReceivedEvent">
+			
+			<fields>
+				<add name="receiveTime" value="## Date.getTime ##" type="java.lang.Long" />
+				<add name="processInstanceId" value="## Execution.getId ##" type="java.lang.String" />
+				<add name="requestedAmount" value="## Variable.loanAmount ##" type="java.lang.Integer" />
+			</fields>
+		
+		</process-monitoring-event-type>
+		
+		<process-monitoring-event-type
+			name="LoanRequestProcessedEvent">
+			
+			<fields>
+				<add name="processedTime" value="## Date.getTime ##" type="java.lang.Long" />
+				<add name="processInstanceId" value="## Execution.getId ##" type="java.lang.String" />
+				<add name="requestedAmount" value="## Variable.loanAmount ##" type="java.lang.Integer" />
+				<add name="requestApproved" value="## Variable.loanApproved ##" type="java.lang.Boolean" />
+			</fields>		
+			
+		</process-monitoring-event-type>
+		
+		<!-- Example - End -->
+		
+	</process-monitoring-event-types>
+	
+	<process-monitoring-event-queries>
+		
+		<!-- Example - Begin -->
+		
+		<process-monitoring-event-query
+			name="avgProcessDurationQuery"
+			text="select avg(endEvent.processedTime - beginEvent.receiveTime) 
+				as avgProcessDuration from pattern[
+					every beginEvent = LoanRequestReceivedEvent -> endEvent = LoanRequestProcessedEvent
+						(processInstanceId = beginEvent.processInstanceId)]
+							.win:length(20)">
+			
+			<included-types>
+				<add key="" typeRef="LoanRequestReceivedEvent" />
+				<add key="" typeRef="LoanRequestProcessedEvent" />	
+			</included-types>
+			
+		</process-monitoring-event-query>
+		
+		<process-monitoring-event-query
+			name="maxProcessDurationQuery"
+			text="select max(endEvent.processedTime - beginEvent.receiveTime)
+				as maxProcessDuration from pattern[
+					every beginEvent = LoanRequestReceivedEvent -> endEvent = LoanRequestProcessedEvent
+						(processInstanceId = beginEvent.processInstanceId)]
+							.win:length(20)">
+			
+			<included-types>
+				<add key="" typeRef="LoanRequestReceivedEvent" />
+				<add key="" typeRef="LoanRequestProcessedEvent" />
+			</included-types>
+		
+		</process-monitoring-event-query>
+		
+		<process-monitoring-event-query
+			name="minProcessDurationQuery"
+			text="select min(endEvent.processedTime - beginEvent.receiveTime)
+				as minProcessDuration from pattern[
+					every beginEvent = LoanRequestReceivedEvent -> endEvent = LoanRequestProcessedEvent
+						(processInstanceId = beginEvent.processInstanceId)]
+							.win:length(20)">
+			
+			<included-types>
+				<add key="" typeRef="LoanRequestReceivedEvent" />
+				<add key="" typeRef="LoanRequestProcessedEvent" />
+			</included-types>
+		
+		</process-monitoring-event-query>
+		
+		<process-monitoring-event-query
+			name="avgMaxSumRequestedAmountQuery"
+			text="select 
+					avg(requestedAmount) as avgRequestedAmount, 
+					max(requestedAmount) as maxRequestedAmount, 
+					sum(requestedAmount) as sumRequestedAmount
+					from LoanRequestReceivedEvent
+						.win:length(10)">
+			
+			<included-types>
+				<add key="" typeRef="LoanRequestReceivedEvent" />
+			</included-types>
+		
+		</process-monitoring-event-query>	
+		
+		<!-- Example - End -->
+		
+	</process-monitoring-event-queries>
+</process-config>

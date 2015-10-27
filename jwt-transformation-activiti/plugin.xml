@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         id="org.eclipse.jwt.transformations.jwt2activiti"
+         name="JWT to Activiti transformation"
+         point="org.eclipse.jwt.transformations">
+      <transformation
+            class="org.eclipse.jwt.transformations.activiti.Jwt2ActivitiService"
+            description="%export_transformation_description"
+            name="%export_transformation_name"
+            type="export">
+      </transformation>
+      <transformation
+            class="org.eclipse.jwt.transformations.activiti.Activiti2JwtService"
+            description="%import_transformation_description"
+            name="%import_transformation_name"
+            type="import">
+      </transformation>
+   </extension>
+
+	<extension
+         id="org.eclipse.jwt.we.preferencePages"
+         name="JWT PreferencePages"
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.jwt.we.editors.preferences.WEPreferences"
+            class="org.eclipse.jwt.we.editors.preferences.pages.WEPreferencesSimulator"
+            id="org.eclipse.jwt.we.editors.preferences.ProcessEnginePreferencePage"
+            name="Process Engine">
+      </page>      
+      <page
+            category="org.eclipse.jwt.we.editors.preferences.ProcessEnginePreferencePage"
+            class="org.eclipse.jwt.we.editors.preferences.pages.WEPreferencesSimulator"
+            id="org.eclipse.jwt.we.editors.preferences.ProcessEngineExecutionPreferencePage"
+            name="Execution"> 
+      </page>                
+      <page
+            category="org.eclipse.jwt.we.editors.preferences.ProcessEnginePreferencePage"
+            class="org.eclipse.jwt.we.editors.preferences.pages.WEPreferencesSimulator"
+            id="org.eclipse.jwt.we.editors.preferences.ProcessEngineMonitoringPreferencePage"
+            name="Monitoring">           
+      </page>
+    </extension>  
+    <extension
+      id="org.eclipse.jwt.we.commands"
+         name="JWT Commands"
+         point="org.eclipse.ui.commands">
+      <category
+            description="JWT Commands"
+            id="org.eclipse.jwt.we.commandCategory"
+            name="JWT">
+      </category>
+      <command
+            categoryId="org.eclipse.jwt.we.commandCategory"
+            defaultHandler="org.eclipse.jwt.plugin.activiti.actions.GenerateActivitiProjectHandler"
+            description="%menu_Generate_description"
+            id="org.eclipse.jwt.we.generateActivitiProjectCommand"
+            name="%menu_Generate_item">
+      </command>
+      <command
+            categoryId="org.eclipse.jwt.we.commandCategory"
+            defaultHandler="org.eclipse.jwt.plugin.activiti.actions.DeployActivitiProjectHandler"
+            description="%menu_Deploy_description"
+            id="org.eclipse.jwt.we.deployActivitiProjectCommand"
+            name="%menu_Deploy_item">
+      </command>
+    </extension>  
+    <extension
+         id="org.eclipse.jwt.we.toolbar"
+         name="JWT Toolbar"
+         point="org.eclipse.ui.menus">
+    	
+    	<menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=org.eclipse.jwt.we.externalBar">
+         <toolbar
+               id="org.eclipse.jwt.we.processEngineBar">
+            <command
+                  commandId="org.eclipse.jwt.we.generateActivitiProjectCommand"
+                  icon="icons/menu_generate.png"
+                  id="org.eclipse.jwt.we.processEngineBar.generateActivitiProject"
+                  label="%menu_Generate_item"
+                  tooltip="%menu_Generate_description">
+               <visibleWhen>
+                  <reference
+                        definitionId="org.eclipse.jwt.we.activeWEEditor">
+                  </reference>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="org.eclipse.jwt.we.deployActivitiProjectCommand"
+                  icon="icons/menu_deploy.png"
+                  id="org.eclipse.jwt.we.processEngineBar.deployActivitiProject"
+                  label="%menu_Deploy_item"
+                  tooltip="%menu_Deploy_description">
+               <visibleWhen>
+                  <reference
+                        definitionId="org.eclipse.jwt.we.activeWEEditor">
+                  </reference>
+               </visibleWhen>
+            </command>
+         </toolbar>
+      </menuContribution>
+    </extension>
+    <extension
+          point="org.eclipse.ui.popupMenus">
+       <objectContribution
+             adaptable="false"
+             id="org.eclipse.jwt.plugin.activiti.unitTestContribution"
+             nameFilter="*.bpmn"
+             objectClass="org.eclipse.core.resources.IFile">
+          <menu
+                id="org.eclipse.jwt.plugin.activiti.menu1"
+                label="Activiti Monitoring"
+                path="additions">
+             <separator
+                   name="group1">
+             </separator>
+          </menu>
+          <action
+                class="org.eclipse.jwt.plugin.activiti.actions.GenerateMonitoringUnitTestHandler"
+                icon="icons/activiti_logo_16x16.png"
+                id="org.eclipse.jwt.plugin.activiti.generateMonitoringUnitTest"
+                label="Generate monitoring unit test"
+                menubarPath="org.eclipse.jwt.plugin.activiti.menu1/group1">
+          </action>
+       </objectContribution>
+       
+       <objectContribution
+             adaptable="false"
+             id="org.eclipse.jwt.plugin.activiti.monitoringOutputContribution"
+             nameFilter="activiti.monitoring.output.cfg.xml"
+             objectClass="org.eclipse.core.resources.IFile">
+          <menu
+                id="org.eclipse.jwt.plugin.activiti.menu1"
+                label="Activiti Monitoring Output"
+                path="additions">
+             <separator
+                   name="group1">
+             </separator>
+          </menu>
+          <action
+                class="org.eclipse.jwt.plugin.activiti.actions.GenerateMonitoringUnitTestHandler"
+                icon="icons/activiti_logo_16x16.png"
+                id="org.eclipse.jwt.plugin.activiti.generateMonitoringUnitTest"
+                label="Merge with the JWT model"
+                menubarPath="org.eclipse.jwt.plugin.activiti.menu1/group1">
+          </action>
+          <action
+                class="org.eclipse.jwt.plugin.activiti.actions.GenerateMonitoringUnitTestHandler"
+                icon="icons/activiti_logo_16x16.png"
+                id="org.eclipse.jwt.plugin.activiti.generateMonitoringUnitTest"
+                label="Fetch from web resource"
+                menubarPath="org.eclipse.jwt.plugin.activiti.menu1/group1">
+          </action>
+       </objectContribution>
+    </extension> 
+       
+</plugin>

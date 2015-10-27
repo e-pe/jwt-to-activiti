@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process-config>
+
+	<!-- Example - Begin -->
+	
+	<process-monitoring
+		key="processBAM">
+		
+			<before-execution>
+				<add
+					key="processDuration"
+					description="Average, maximum, minimum process duration -- Before"
+					eventTypeRef="LoanRequestReceivedEvent" />					
+			</before-execution>
+			
+			<after-execution>
+				<add
+					key="avgProcessDuration"
+					description="Average, maximum, minimum process duration -- After"
+					eventTypeRef="LoanRequestProcessedEvent" />
+			</after-execution>
+		
+		<process-task-monitoring
+			key="">	
+			
+			<before-execution>
+				<add
+					key="avgTaskDuration"
+					description="Average, maximum, minimum task duration -- Before"
+					eventTypeRef="" />					
+			</before-execution>
+			
+			<after-execution>
+				<add
+					key="avgTaskDuration"
+					description="Average, maximum, minimum task duration -- After"
+					eventTypeRef="" />					
+			</after-execution>
+		</process-task-monitoring>
+		
+		<process-task-monitoring>
+			<before-execution>
+				<add 
+					key=""
+					description=""
+					eventTypeRef="" />
+					
+				<add 
+					key=""
+					description=""
+					eventTypeRef="" />
+			</before-execution>
+			
+			<after-execution>
+				<add 
+					key=""
+					description=""
+					eventTypeRef="" />
+					
+				<add 
+					key=""
+					description=""
+					eventTypeRef="" />
+			</after-execution>
+		</process-task-monitoring>
+	</process-monitoring>
+	
+	<!-- Example - End -->
+	
+</process-config>

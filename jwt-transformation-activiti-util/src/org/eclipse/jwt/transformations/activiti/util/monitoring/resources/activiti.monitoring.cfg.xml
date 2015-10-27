@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process-config>
+	<process-monitoring 
+		activated="true">	
+		
+		<process-monitoring-listener 
+			element="process" 
+			event="start" 
+			type="{{ processStartExecutionListener }}" 
+			class="org.eclipse.jwt.transformations.activiti.integration.ProcessStartExecutionListener">
+			
+			<invoke-additional-listener class="" />	 					
+		</process-monitoring-listener>	
+			
+		<process-monitoring-listener 
+			element="process" 
+			event="end" 
+			type="{{ processEndExectionListener }}"
+			class="org.eclipse.jwt.transformations.activiti.integration.ProcessEndExecutionListener">
+			
+			<invoke-additional-listener class="" />	 						
+		</process-monitoring-listener>	
+			
+		<process-monitoring-listener
+			element="sequenceFlow"
+			event="take"
+			type="{{ sequenceFlowTakeExecutionListener }}"
+			class="org.eclipse.jwt.transformations.activiti.integration.SequenceFlowTakeExecutionListener">
+			
+			<invoke-additional-listener class="" />		
+		</process-monitoring-listener>	
+			
+		<process-monitoring-listener 
+			element="serviceTask"
+			event="start"
+			type="{{ serviceTaskStartExecutionListener }}"
+			class="org.eclipse.jwt.transformations.activiti.integration.ServiceTaskStartExecutionListener">
+			
+			<invoke-additional-listener class="" />
+		</process-monitoring-listener>		
+			
+		<process-monitoring-listener
+			element="serviceTask"
+			event="end"
+			type="{{ serviceTaskEndExecutionListener }}"
+			class="org.eclipse.jwt.transformations.activiti.integration.ServiceTaskEndExecutionListener">
+			
+			<invoke-additional-listener class="" />
+		</process-monitoring-listener>	
+			
+		<process-monitoring-listener
+			element="userTask"
+			event="create"
+			type="{{ userTaskCreateExecutionListener }}"
+			class="org.eclipse.jwt.transformations.activiti.integration.UserTaskCreateExecutionListener">
+			
+			<invoke-additional-listener class="" />
+		</process-monitoring-listener>		
+			
+		<process-monitoring-listener
+			element="userTask"
+			event="assignment"
+			type="{{ userTaskAssignmentExecutionListener }}"
+			class="org.eclipse.jwt.transformations.activiti.integration.UserTaskAssignmentExecutionListener">
+			
+			<invoke-additional-listener class="" />
+		</process-monitoring-listener>		
+			
+		<process-monitoring-listener
+			element="userTask"
+			event="complete"
+			type="{{ userTaskCompleteExecutionListener }}"
+			class="org.eclipse.jwt.transformations.activiti.integration.UserTaskCompleteExecutionListener">	
+			
+			<invoke-additional-listener class="" />	
+		</process-monitoring-listener>
+					
+	</process-monitoring>
+</process-config>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process-config>
+	<process-monitoring-test
+		class=""
+		activated="true"
+		outputPath=""
+		paramsPath=""
+		queriesPath="">
+		
+		<process-monitoring-activation
+			model=""
+			modelKey=""
+			modelParamsRef="">
+			
+			<process-instance-activation
+				numberOfCurrentType="2">
+				
+				<initial-activation>
+					<add
+						key="name"
+						value="Mike Lawrey" />
+					<add
+						key="income"
+						value="1000" />		
+					<add
+						key="loanAmount"
+						value="2000" />		
+				</initial-activation>
+							
+				<user-task-activation>
+					<add 
+						key=""
+						delay="60000"
+						probability="0.7" /> 
+						
+					<add
+						key=""
+						delay="60000"
+						probability="0.5" />								
+				</user-task-activation>	
+				
+			</process-instance-activation>	
+			
+			<process-instance-activation
+				numberOfCurrentType="2">
+				
+				<initial-activation>
+					<add
+						key="name"
+						value="Johnny Rod" />
+					<add
+						key="income"
+						value="4000" />		
+					<add
+						key="loanAmount"
+						value="4000" />		
+				</initial-activation>
+							
+				<user-task-activation>
+					<add 
+						key=""
+						delay="60000"
+						probability="0.9" /> 
+						
+					<add
+						key=""
+						delay="60000"
+						probability="0.6" />								
+				</user-task-activation>	
+				
+			</process-instance-activation>	
+						
+		</process-monitoring-activation>
+		
+	</process-monitoring-test>
+	
+	<process-monitoring-test
+		activated="false"
+		class=""
+		output="">
+		
+		<process-monitoring-activation
+			model=""
+			params=""
+			numberOfInstances="">
+			
+			<process-instance-activation
+				numberOfCurrentType="">
+				
+				<initial-activation>
+					<add
+						key=""
+						value="" />
+					<add
+						key=""
+						value="" />		
+				</initial-activation>
+				
+				<user-task-activation>
+					<add 
+						key=""
+						delay=""
+						probability="" /> 
+						
+					<add
+						key=""
+						delay=""
+						probability="" />								
+				</user-task-activation>	
+			</process-instance-activation>	
+			
+			<process-instance-activation
+				numberOfCurrentType="">
+				
+				<initial-activation>
+					<add
+						key=""
+						value="" />
+					<add
+						key=""
+						value="" />		
+				</initial-activation>
+				
+				<user-task-activation>
+					<add 
+						key=""
+						delay=""
+						probability="" /> 
+						
+					<add
+						key=""
+						delay=""
+						probability="" />								
+				</user-task-activation>	
+					
+			</process-instance-activation>		
+		
+		</process-monitoring-activation>
+		
+	</process-monitoring-test>
+	
+</process-config>
